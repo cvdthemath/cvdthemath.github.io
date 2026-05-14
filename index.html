@@ -2,9 +2,27 @@
 <html>
 <head>
 <title>cvdthemath</title>
+<script>
+let count=parseInt(sessionStorage.getItem('iteration'))||0;
+const navigation=performance.getEntriesByType('navigation');
+if (navigation.length>0) {
+    const typ = navigation[0].type;
+    if (typ==="back_forward") {
+        count=Math.max(0, count-1);
+    } else if (typ==="navigate") {
+        count++;
+    }
+}
+sessionStorage.setItem('iteration', count);
+document.addEventListener("DOMContentLoaded", () => {
+    const displayElement = document.getElementById("iteration");
+    displayElement.innerHTML = `iteration: ${count}`;
+});
+</script>
 </head>
 <body style="background-color: #000000">
-<h1 style="font-family: sans-serif; font-size: 125px; color: #FF0000; text-align: center">Welcome :)</h1>
+<h1 style="font-family: sans-serif; font-size: 125px; color: #000000; text-align: center">Welcome :)</h1>
+<h2 style="font-family: sans-serif; font-size: 100px; color: #000000" id="iteration">0</h2>
 <div style="display: flex; justify-content: center; width: 100%">
 <div style="text-align: center; display: inline-box; width: 50vw">
 <button style="color: #000000; background-color: #40EFFF; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
