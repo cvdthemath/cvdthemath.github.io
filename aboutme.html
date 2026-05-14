@@ -3,20 +3,25 @@
 <head>
 <title>cvdthemath</title>
 <script>
-let count=parseInt(sessionStorage.getItem('iteration'))||0;
-const navigation=performance.getEntriesByType('navigation');
-if (navigation.length>0) {
-    const typ = navigation[0].type;
-    if (typ==="back_forward") {
-        count=Math.max(0, count-1);
-    } else if (typ==="navigate") {
-        count++;
+window.addEventListener('pageshow', (event) => {
+    let count=parseInt(sessionStorage.getItem('iteration')) || 0;
+    let lastIndex=parseInt(sessionStorage.getItem('lastIndex')) || 0;
+    let currentIndex=window.history.length;
+    const nav=performance.getEntriesByType('navigation')[0];
+    if (nav) {
+        if (nav.type==="back_forward" || event.persisted) {
+            if (currentIndex<=lastIndex) {
+                count = Math.max(0, count-1);
+            } else {
+                count++;
+            }
+        } else if (nav.type==="navigate") {
+            count++;
+        }
     }
-}
-sessionStorage.setItem('iteration', count);
-document.addEventListener("DOMContentLoaded", () => {
-    const displayElement = document.getElementById("iteration");
-    displayElement.innerHTML = `Iteration ${count}`;
+    sessionStorage.setItem('iteration', count);
+    sessionStorage.setItem('lastIndex', currentIndex);
+    document.getElementById("iteration").innerHTML=`Iteration ${count}`;
 });
 </script>
 </head>
