@@ -2,31 +2,14 @@
 <html>
 <head>
 <title>cvdthemath</title>
-<script>
-window.addEventListener('pageshow', (event) => {
-    let count=parseInt(sessionStorage.getItem('iteration')) || 0;
-    let lastIndex=parseInt(sessionStorage.getItem('lastIndex')) || 0;
-    let currentIndex=window.history.length;
-    const nav=performance.getEntriesByType('navigation')[0];
-    if (nav) {
-        if (nav.type==="back_forward" || event.persisted) {
-            if (currentIndex<=lastIndex) {
-                count = Math.max(0, count-1);
-            } else {
-                count++;
-            }
-        } else if (nav.type==="navigate") {
-            count++;
-        }
-    }
-    sessionStorage.setItem('iteration', count);
-    sessionStorage.setItem('lastIndex', currentIndex);
-    document.getElementById("iteration").innerHTML=`Iteration ${count}`;
-});
-</script>
 </head>
 <body style="background-color: #000000">
 <h2 style="font-family: sans-serif; font-size: 100px; color: #FFFFFF" id="iteration">Iteration 0</h2>
 <h1 style="font-family: sans-serif; font-size: 125px; color: #FFFFFF; text-align: center">What I'm doing</h1>
 <p style="font-family: sans-serif; font-size: 70px; color: #FFFFFF">Currently, I'm making a new game called "Sokomath", you will find out when it releases</p>
+</body>
+<script>
+const params=new URLSearchParams(window.location.search);
+document.getElementById("iteration").innerHTML=`Iteration ${params.get("iteration")||0}`;
+</script>
 </html>
