@@ -2,28 +2,6 @@
 <html>
 <head>
 <title>cvdthemath</title>
-<script>
-window.addEventListener('pageshow', (event) => {
-    let count=parseInt(sessionStorage.getItem('iteration')) || 0;
-    let lastIndex=parseInt(sessionStorage.getItem('lastIndex')) || 0;
-    let currentIndex=window.history.length;
-    const nav=performance.getEntriesByType('navigation')[0];
-    if (nav) {
-        if (nav.type==="back_forward" || event.persisted) {
-            if (currentIndex<=lastIndex) {
-                count = Math.max(0, count-1);
-            } else {
-                count++;
-            }
-        } else if (nav.type==="navigate") {
-            count++;
-        }
-    }
-    sessionStorage.setItem('iteration', count);
-    sessionStorage.setItem('lastIndex', currentIndex);
-    document.getElementById("iteration").innerHTML=`Iteration ${count}`;
-});
-</script>
 </head>
 <body style="background-color: #000000">
 <h2 style="font-family: sans-serif; font-size: 100px; color: #FFFFFF" id="iteration">Iteration 0</h2>
@@ -31,17 +9,20 @@ window.addEventListener('pageshow', (event) => {
 <div style="display: flex; justify-content: center; width: 100%">
 <div style="text-align: center; display: inline-box; width: 50vw">
 <button style="color: #000000; background-color: #40EFFF; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
-onclick="window.location.href='https://cuongvd2012.github.io/aboutme.html';">About me</button>
+onclick="window.location.href=`https://cuongvd2012.github.io/aboutme.html?iteration=${parseInt(params.get("iteration")||0)+1}`;">About me</button>
 <button style="color: #000000; background-color: #FF9D00; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
 onclick="window.location.href='https://github.com/cuongvd2012/games';">Python Games</button>
-
 </div>
 <div style="text-align: center; width: 50vw">
 <button style="color: #000000; background-color: #A640FF; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
-onclick="window.location.href='https://cuongvd2012.github.io/whatimdoing.html';">What I'm doing</button>
+onclick="window.location.href=`https://cuongvd2012.github.io/whatimdoing.html?iteration=${parseInt(params.get("iteration")||0)+1}`;">What I'm doing</button>
 <button style="color: #000000; background-color: #036BFC; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
-onclick="window.location.href='https://cuongvd2012.github.io';">Recurse</button>
+onclick="window.location.href=`https://cuongvd2012.github.io?iteration=${parseInt(params.get("iteration")||0)+1}`">Recurse</button>
 </div>
 </div>
 </body>
+<script>
+const params=new URLSearchParams(window.location.search);
+document.getElementById("iteration").innerHTML=`Iteration ${params.get("iteration")||0}`;
+</script>
 </html>
