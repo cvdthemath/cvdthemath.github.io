@@ -31,4 +31,4 @@ jobs:
           git config user.email "actions@github.com"
           git add og-image.png
           git diff --staged --quiet || git commit -m "Update OG image [skip ci]"
-          git push
+          git push 
