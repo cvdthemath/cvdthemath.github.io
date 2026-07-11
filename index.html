@@ -5,21 +5,27 @@
 </head>
 <style>
 .rainbowbutton {
-    padding: 15px 30px;
-    font-size: 18px;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    animation: rainbow 3s infinite;
+padding: 15px 30px;
+font-size: 18px;
+color: white;
+border: none;
+border-radius: 8px;
+animation: rainbow 3s infinite;
 }
 @keyframes rainbow {
-    0%   { background: #FF0000; }
-    17%  { background: #FFFF00; }
-    33%  { background: #00FF00; }
-    50%  { background: #00FFFF; }
-    67%  { background: #0000FF; }
-    83%  { background: #FF00FF; }
-    100%  { background: #FF0000; }
+0% {background: #FF0000;}
+8% {background: #FF8000;}
+17% {background: #FFFF00;}
+25% {background: #80FF00;}
+33% {background: #00FF00;}
+41% {background: #00FF80;}
+50% {background: #00FFFF;}
+58% {background: #0080FF;}
+67% {background: #0000FF;}
+75% {background: #8000FF;}
+83% {background: #FF00FF;}
+91% {background: #FF0080;}
+100% {background: #FF0000;}
 }
 </style>
 <body style="background-color: #000000">
@@ -31,7 +37,7 @@
 onclick="window.location.href=`https://cvdthemath.github.io/aboutme?iteration=${parseInt(params.get('iteration')||0)+1}`;">About me</button>
 <button style="color: #000000; background-color: #FF9D00; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
 onclick="window.location.href='https://github.com/cvdthemath/games';">Python Games</button>
-  <button style="color: #000000; background-color: #34EB4F; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
+<button style="color: #000000; background-color: #34EB4F; font-family: sans-serif; font-size: 60px; border: none; border-radius: 10px; width: 40vw; height: 20vw; margin: 5vw"
 onclick="window.location.href=`https://cvdthemath.github.io/events?iteration=${parseInt(params.get('iteration')||0)+1}`;">Events</button>
 </div>
 <div style="text-align: center; width: 50vw">
